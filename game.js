@@ -18,10 +18,10 @@ function gameController(getPlayerInput, getComputerInput, getRoundWinner) {
 }
 
 function askRounds() {
-  const roundsRegExp = /^([1-9]|1[0-9])$/
+  const roundsRegExp = /^([5-9]|1[0-9]|20)$/
   let numberOfRounds = prompt('How many rounds do you wish to play?')
   while (!roundsRegExp.test(numberOfRounds)) {
-     numberOfRounds = prompt('Please input a number lower than 20. How many rounds do you wish to play?')
+     numberOfRounds = prompt('Please input a number from 5 to 20. How many rounds do you wish to play?')
   }
   console.log(`Winner of ${numberOfRounds} rounds`)
   return Number(numberOfRounds)
