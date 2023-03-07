@@ -47,3 +47,32 @@ function round(getPlayerInput, getComputerInput, getRoundWinner) {
 }
 
 gameController()
+
+// winner ??
+const rps = (playerScore, computerScore) => {
+  let s = "scissors";
+  let p = "paper";
+  let r = "rock";
+  let ans = "";
+
+  switch (rps) {
+    case playerScore == p && computerScore == r:
+    case playerScore == s && computerScore == p:
+    case playerScore == r && computerScore == s:
+      ans = "Player 1 won!";
+      break;
+
+    case playerScore == s && computerScore == r:
+    case playerScore == r && computerScore == p:
+    case playerScore == p && computerScore == s:
+      ans = "Player 2 won!";
+      break;
+
+    default:
+      ans = "Draw!";
+      break;
+  }
+  return ans;
+};
+
+rps("paper", "scissors");
