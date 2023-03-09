@@ -27,17 +27,17 @@ function askRounds() {
   return Number(numberOfRounds)
 }
 
-function round(getPlayerInput, getComputerInput, getRoundWinner) {
+function round(getPlayerInput, getComputerInput, roundWinner) {
   // const computerInput = getComputerInput()
   // const playerInput = getPlayerInput()
-  const winner = getRoundWinner("rock", "scissors")
+  const winner = roundWinner("rock", "scissors")
   switch (winner) {
-    case 'Player 1 won!': {
+    case 'player': {
       playerScore++
       console.log('You win this round')
       break;
     }
-    case 'Player 2 won!': {
+    case 'computer': {
       computerScore++
       console.log('Opponent wins this round')
     }
@@ -50,33 +50,40 @@ function round(getPlayerInput, getComputerInput, getRoundWinner) {
 }
 
 // winner ??
-const rps = (playerScore, computerScore) => {
+const roundWinner = (playerScore, computerScore) => {
   let s = "scissors";
   let p = "paper";
   let r = "rock";
-  let ans = "";
+  let result = "";
 
-  console.log(rps)
-  switch (rps) {
-    case playerScore == p && computerScore == r:
-    case playerScore == s && computerScore == p:
-    case playerScore == r && computerScore == s:
-      ans = "Player 1 won!";
-      break;
+  console.log(roundWinner);
+  if ( 
+     (playerScore == p && computerScore == r)||
+     (playerScore == s && computerScore == p) ||
+     (playerScore == r && computerScore == s)
+     )
+      { 
+     result = "player";
+    }
 
-    case playerScore == s && computerScore == r:
-    case playerScore == r && computerScore == p:
-    case playerScore == p && computerScore == s:
-      ans = "Player 2 won!";
-      break;
+      else if (
 
-    default:
-      ans = "Draw!";
-      break;
+    (playerScore == s && computerScore == r)||
+    (playerScore == r && computerScore == p)||
+    (playerScore == p && computerScore == s)
+    )
+{
+      result = "computer";
+}
+      
+else
+{
+   result = "draw";
+   
   }
   console.log(ans)
   return ans;
 };
 
-rps("paper", "scissors");
-// gameController(null, null, rps)
+// rps("paper", "scissors");
+gameController(null, null, roundWinner);
