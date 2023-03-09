@@ -28,9 +28,9 @@ function askRounds() {
 }
 
 function round(getPlayerInput, getComputerInput, roundWinner) {
-  // const computerInput = getComputerInput()
-  // const playerInput = getPlayerInput()
-  const winner = roundWinner("rock", "scissors")
+  const computerInput = getComputerInput()
+  const playerInput = getPlayerInput()
+  const winner = roundWinner(playerInput, computerInput)
   switch (winner) {
     case 'player': {
       playerScore++
@@ -40,6 +40,7 @@ function round(getPlayerInput, getComputerInput, roundWinner) {
     case 'computer': {
       computerScore++
       console.log('Opponent wins this round')
+      break;
     }
     default : {
       console.log('It \'s a draw')
@@ -50,40 +51,49 @@ function round(getPlayerInput, getComputerInput, roundWinner) {
 }
 
 // winner ??
-const roundWinner = (playerScore, computerScore) => {
+const roundWinner = (playerInput, computerInput) => {
   let s = "scissors";
   let p = "paper";
   let r = "rock";
   let result = "";
 
   console.log(roundWinner);
-  if ( 
-     (playerScore == p && computerScore == r)||
-     (playerScore == s && computerScore == p) ||
-     (playerScore == r && computerScore == s)
-     )
-      { 
-     result = "player";
-    }
-
-      else if (
-
-    (playerScore == s && computerScore == r)||
-    (playerScore == r && computerScore == p)||
-    (playerScore == p && computerScore == s)
-    )
-{
-      result = "computer";
-}
-      
-else
-{
-   result = "draw";
-   
+  if (
+    (playerInput == p && computerInput == r) ||
+    (playerInput == s && computerInput == p) ||
+    (playerInput == r && computerInput == s)
+  ) {
+    result = "player";
+  } else if (
+    (playerInput == s && computerInput == r) ||
+    (playerInput == r && computerInput == p) ||
+    (playerInput == p && computerInput == s)
+  ) {
+    result = "computer";
+  } else {
+    result = "draw";
   }
-  console.log(ans)
-  return ans;
+  console.log(result)
+  return result;
 };
 
+
+function compPlay() {
+  const options = ["rock", "paper", "scissors"];
+  const primary = Math.floor(Math.random() * 3);
+  return options[primary];
+}
+
+function getPlayerInput() {
+  let input = prompt("Enter rock, paper, or scissors:").toLowerCase();
+  while (input !== "rock" && input !== "paper" && input !== "scissors") {
+    input = prompt(
+      "Invalid input. Please enter rock, paper, or scissors:"
+    ).toLowerCase();
+  }
+  return input;
+}
+
+
 // rps("paper", "scissors");
-gameController(null, null, roundWinner);
+gameController(getPlayerInput, compPlay, roundWinner);
