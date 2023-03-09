@@ -28,25 +28,26 @@ function askRounds() {
 }
 
 function round(getPlayerInput, getComputerInput, getRoundWinner) {
-  const computerInput = getComputerInput()
-  const playerInput = getPlayerInput()
-  const winner = getRoundWinner(computerInput, playerInput)
+  // const computerInput = getComputerInput()
+  // const playerInput = getPlayerInput()
+  const winner = getRoundWinner("rock", "scissors")
   switch (winner) {
-    case 'player': {
+    case 'Player 1 won!': {
       playerScore++
       console.log('You win this round')
       break;
     }
-    case 'computer': {
+    case 'Player 2 won!': {
       computerScore++
       console.log('Opponent wins this round')
+    }
+    default : {
+      console.log('It \'s a draw')
     }
       
   }
   console.log(`Current Score: Player ${playerScore} - ${computerScore} Opponent`)
 }
-
-gameController()
 
 // winner ??
 const rps = (playerScore, computerScore) => {
@@ -55,6 +56,7 @@ const rps = (playerScore, computerScore) => {
   let r = "rock";
   let ans = "";
 
+  console.log(rps)
   switch (rps) {
     case playerScore == p && computerScore == r:
     case playerScore == s && computerScore == p:
@@ -72,7 +74,9 @@ const rps = (playerScore, computerScore) => {
       ans = "Draw!";
       break;
   }
+  console.log(ans)
   return ans;
 };
 
 rps("paper", "scissors");
+// gameController(null, null, rps)
