@@ -148,7 +148,7 @@ function getPlayerInput(round) {
       input = 'paper';
   }
   // Check correct input
-  while (input !== "rock" && input !== "paper" && input !== "scissors") {
+  while (input !== "rock" && input !== "paper" && input !== "scissors" && input !== "p" && input !== "s" && input !== "r") {
     if (!input) {
       // User clicks cancel option
       if (confirm('Exit the game?')) {
