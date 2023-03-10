@@ -122,7 +122,7 @@ function getPlayerInput(round) {
   let input = prompt(`Round ${round}. Enter rock(r), paper(p), or scissors(s):`);
   // Users types something
   if (typeof input === 'string') {
-    input = input.toLowerCase();
+    input = adjustInput(input);
   }
   // If the user clicks cancel instead
   else {
@@ -133,7 +133,26 @@ function getPlayerInput(round) {
       return getPlayerInput(round);
     }
   }
-  // Possible grammar errors and single letter
+  
+  // Check correct input
+  while (input !== "rock" && input !== "paper" && input !== "scissors") {
+    if (!input) {
+      // User clicks cancel option
+      if (confirm('Exit the game?')) {
+        return cancelGame();
+      }
+    }
+    // User types something that isn't an option
+    input = adjustInput(prompt(
+      "Invalid input. Please enter rock, paper, or scissors:"
+    ));
+  }
+  return input;
+}
+
+function adjustInput(input) {
+  input = input.toLowerCase();
+  // Possible grammar errors and single letter options
   switch (input) {
     case 'scisors':
     case 'scisor':
@@ -146,19 +165,6 @@ function getPlayerInput(round) {
       break;
     case 'p':
       input = 'paper';
-  }
-  // Check correct input
-  while (input !== "rock" && input !== "paper" && input !== "scissors" && input !== "p" && input !== "s" && input !== "r") {
-    if (!input) {
-      // User clicks cancel option
-      if (confirm('Exit the game?')) {
-        return cancelGame();
-      }
-    }
-    // User types something that isn't an option
-    input = prompt(
-      "Invalid input. Please enter rock, paper, or scissors:"
-    ).toLowerCase();
   }
   return input;
 }
