@@ -136,12 +136,6 @@ function getPlayerInput(round) {
   
   // Check correct input
   while (input !== "rock" && input !== "paper" && input !== "scissors") {
-    if (!input) {
-      // User clicks cancel option
-      if (confirm('Exit the game?')) {
-        return cancelGame();
-      }
-    }
     // User types something that isn't an option
     input = adjustInput(prompt(
       "Invalid input. Please enter rock, paper, or scissors:"
