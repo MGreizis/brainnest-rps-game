@@ -151,7 +151,7 @@ function getPlayerInput(round) {
 }
 
 function adjustInput(input) {
-  input = input.toLowerCase();
+  input = input.toLowerCase().trim();
   // Possible grammar errors and single letter options
   switch (input) {
     case 'scisors':
